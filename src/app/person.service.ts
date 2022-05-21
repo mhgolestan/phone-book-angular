@@ -47,9 +47,7 @@ export class PersonService {
   }
 
   /** POST: add a new hero to the server */
-  addPerson(person: Person): Observable<Person> {
-    console.log(person);
-    
+  addPerson(person: Person): Observable<Person> {    
     return this.http.post<Person>(this.personsUrl, person, this.httpOptions).pipe(
       tap((newPerson: Person) => this.log(`added person w/ id=${newPerson.id}`)),
       catchError(this.handleError<Person>('addPerson'))

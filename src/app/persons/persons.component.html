@@ -1,22 +1,36 @@
 <h2>My persons</h2>
-<div>
-  <label for="new-person">Name: </label>
-  <input id="new-person" #personName />
-  <label for="new-person">Number: </label>
-  <input id="new-person" #personNumber />
+  <h1>Hero Form</h1>
 
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" class="add-button" (click)="add(personName.value, personNumber.value); personName.value=''">
-    Add person
-  </button>
+
+<div>
+  <form (ngSubmit)="onSubmit()" #personForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input type="text" class="form-control" #personName required id="name" name="name" />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone: </label>
+      <input type="text" class="form-control" #personPhone required id="phone" name="phone" />
+    </div>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="submit" 
+      class="add-button" 
+      (click)="add(personName.value, personPhone.value); personName.value=''; personPhone.value=''"
+      [disabled]="!personForm.form.valid" >
+      Add person
+    </button>
+  </form>
 </div>
-<ul class="persons">
-  <li *ngFor="let person of persons">
-    <a routerLink="/detail/{{person.id}}">
-      <span class="badge"></span> {{person.name}}
-    </a>
-    {{person.phone}}
-    <button type="button" class="delete" title="Delete person"
-      (click)="delete(person)">X</button>
-  </li>
-</ul>
+
+<div>
+  <ul class="persons">
+    <li *ngFor="let person of persons">
+      <a routerLink="/detail/{{person.id}}">
+        <span class="badge"></span> {{person.name}}
+      </a>
+      {{person.phone}}
+      <button type="button" class="delete" title="Delete person"
+        (click)="delete(person)">X</button>
+    </li>
+  </ul>
+</div>

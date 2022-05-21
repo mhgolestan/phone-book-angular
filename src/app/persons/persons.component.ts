@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Person } from '../person';
+
 import { PersonService } from '../person.service';
 import { MessageService } from '../message.service';
 
@@ -13,6 +14,9 @@ import { MessageService } from '../message.service';
 export class PersonsComponent implements OnInit {
 
   persons: Person[] = [];
+  submitted = false;
+  onSubmit() { this.submitted = true; }
+
 
   constructor(private personService: PersonService,private messageService: MessageService) { }
   
@@ -38,5 +42,6 @@ export class PersonsComponent implements OnInit {
     this.persons = this.persons.filter(p => p !== person);
     this.personService.deletePerson(person.id).subscribe();
   }
+
 
 }
