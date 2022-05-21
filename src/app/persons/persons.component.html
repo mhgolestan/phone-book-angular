@@ -1,8 +1,19 @@
 <h2>My persons</h2>
+<div>
+  <label for="new-person">Person name: </label>
+  <input id="new-person" #personName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button" (click)="add(personName.value); personName.value=''">
+    Add person
+  </button>
+</div>
 <ul class="persones">
   <li *ngFor="let person of persons">
     <a routerLink="/detail/{{person.id}}">
       <span class="badge">{{person.id}}</span> {{person.name}}
     </a>
+    <button type="button" class="delete" title="Delete person"
+      (click)="delete(person)">x</button>
   </li>
 </ul>

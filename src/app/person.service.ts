@@ -43,6 +43,24 @@ export class PersonService {
     );
   }
 
+  /** POST: add a new hero to the server */
+  addPerson(person: Person): Observable<Person> {
+    return this.http.post<Person>(this.personsUrl, person, this.httpOptions).pipe(
+      tap((newPerson: Person) => this.log(`added person w/ id=${newPerson.id}`)),
+      catchError(this.handleError<Person>('addHero'))
+    );
+  }
+
+  /** DELETE: delete the hero from the server */
+  deletePerson(id: number): Observable<Person> {
+    const url = `${this.personsUrl}/${id}`;
+
+    return this.http.delete<Person>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted person id=${id}`)),
+      catchError(this.handleError<Person>('deleteHero'))
+    );
+  }
+
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`PersonService: ${message}`);
