@@ -61,6 +61,20 @@ export class PersonService {
     );
   }
 
+  /* GET heroes whose name contains search term */
+  searchPersons(term: string): Observable<Person[]> {
+    if (!term.trim()) {
+      // if not search term, return empty person array.
+      return of([]);
+    }
+    return this.http.get<Person[]>(`${this.personsUrl}/?name=${term}`).pipe(
+      tap(x => x.length ?
+        this.log(`found persons matching "${term}"`) :
+        this.log(`no persons matching "${term}"`)),
+      catchError(this.handleError<Person[]>('searchPersons', []))
+    );
+  }
+
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`PersonService: ${message}`);

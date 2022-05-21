@@ -12,6 +12,7 @@ import { PersonDetailComponent } from './person-detail/person-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PersonSearchComponent } from './person-search/person-search.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PersonsComponent,
     PersonDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    PersonSearchComponent
   ],
   imports: [
     BrowserModule,
