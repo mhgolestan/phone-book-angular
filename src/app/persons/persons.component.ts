@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Person } from '../person';
 import { PersonService } from '../person.service';
+import { MessageService } from '../message.service';
+
 
 @Component({
   selector: 'app-persons',
@@ -9,20 +12,23 @@ import { PersonService } from '../person.service';
 })
 export class PersonsComponent implements OnInit {
 
+  selectedPerson?: Person;
   persons: Person[] = [];
 
-  selectedPerson?: Person;
-  onSelect(person: Person): void {
-    this.selectedPerson = person;
-  }
   
-
-  constructor(private personService: PersonService) { }
-
+  
+  constructor(private personService: PersonService,private messageService: MessageService) { }
+  
   ngOnInit(): void {
     this.getPersons();
   }
- 
+  
+  onSelect(person: Person): void {
+    this.selectedPerson = person;
+    this.messageService.add(`PersonsComponent: Selected person id=${person.id}`);
+
+  }
+
   getPersons(): void {
     this.personService.getPersons().subscribe(persons => this.persons = persons);
   }
