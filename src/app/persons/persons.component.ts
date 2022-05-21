@@ -25,10 +25,10 @@ export class PersonsComponent implements OnInit {
     this.personService.getPersons().subscribe(persons => this.persons = persons);
   }
 
-  add(name: string): void {
-    name = name.trim();
+  add(name: string, phone: string): void {
+    name = name.trim();    
     if (!name) { return; }
-    this.personService.addPerson({ name } as Person)
+    this.personService.addPerson({name, phone} as Person)
       .subscribe(person => {
         this.persons.push(person);
       });

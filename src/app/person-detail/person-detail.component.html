@@ -4,6 +4,8 @@
   <div>
     <label for="person-name">person name: </label>
     <input id="person-name" [(ngModel)]="person.name" placeholder="name">
+    <label for="person-phone">person phone: </label>
+    <input id="person-phone" [(ngModel)]="person.phone" placeholder="phone">
   </div>
   <button type="button" (click)="save()">save</button>
   <button type="button" (click)="goBack()">go back</button>

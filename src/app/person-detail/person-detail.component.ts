@@ -22,7 +22,8 @@ export class PersonDetailComponent implements OnInit {
   }
 
   getPerson(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.params["id"]
+    
     this.personService.getPerson(id)
       .subscribe(person => this.person = person);
   }
