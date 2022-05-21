@@ -1,6 +1,6 @@
 <h2>Recent calls</h2>
 <div class="persons-menu">
-  <a *ngFor="let person of persons">
+  <a *ngFor="let person of persons" routerLink="/detail/{{person.id}}">
     {{person.name}}
   </a>
 </div>
