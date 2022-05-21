@@ -7,14 +7,4 @@
     </button>
   </li>
 </ul>
-
-<div *ngIf="selectedPerson">
-  <h2>{{selectedPerson.name | uppercase}} Details</h2>
-  <div>id: {{selectedPerson.id}}</div>
-  <div>
-    <label for="person-name">Person name: </label>
-    <input id="person-name" [(ngModel)]="selectedPerson.name" placeholder="name">
-    <label for="person-phone">Person phone: </label>
-    <input id="person-phone" [(ngModel)]="selectedPerson.phone" placeholder="name">
-  </div>
-</div>
+<app-person-detail [person]="selectedPerson"></app-person-detail>
