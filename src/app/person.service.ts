@@ -31,6 +31,18 @@ export class PersonService {
     );
   }
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  /** PUT: update the hero on the server */
+  updatePerson(person: Person): Observable<any> {
+    return this.http.put(this.personsUrl, person, this.httpOptions).pipe(
+      tap(_ => this.log(`updated person id=${person.id}`)),
+      catchError(this.handleError<any>('updatePerson'))
+    );
+  }
+
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`PersonService: ${message}`);

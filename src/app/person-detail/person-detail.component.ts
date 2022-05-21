@@ -26,7 +26,15 @@ export class PersonDetailComponent implements OnInit {
     this.personService.getPerson(id)
       .subscribe(person => this.person = person);
   }
+
   goBack(): void {
     this.location.back();
   }
+
+  save(): void {
+  if (this.person) {
+    this.personService.updatePerson(this.person)
+      .subscribe(() => this.goBack());
+  }
+}
 }
