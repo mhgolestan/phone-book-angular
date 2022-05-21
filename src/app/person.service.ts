@@ -24,11 +24,11 @@ export class PersonService {
   }
 
   getPerson(id: number): Observable<Person> {
-    // For now, assume that a hero with the specified `id` always exists.
-    // Error handling will be added in the next step of the tutorial.
-    const person = PERSONS.find(p => p.id === id)!;
-    this.messageService.add(`PersonService: fetched person id=${id}`);
-    return of(person);
+    const url = `${this.personsUrl}/${id}`;
+    return this.http.get<Person>(url).pipe(
+      tap(_ => this.log(`fetched person id=${id}`)),
+      catchError(this.handleError<Person>(`getPerson id=${id}`))
+    );
   }
 
   /** Log a HeroService message with the MessageService */
